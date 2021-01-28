@@ -58,3 +58,13 @@ const String date_const = "2021-01-30";
 const date_const1 = new DateTime.now();
 
 ```
+
+## Functions
+```bash
+bool isEven(int number) {
+  return number % 2 == 0;
+}
+
+//With only one expression
+bool isEven(int number) => number % 2 == 0;
+```

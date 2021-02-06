@@ -18,6 +18,14 @@ Dart Online
 
 https://dart.dev/#try-dart
 
+Flutter studio (Flutter widget designer)
+
+https://flutterstudio.app
+
+Flutter Widget catalog
+
+https://flutter.dev/docs/development/ui/widgets
+
 # Dart
 
 ## Main program
@@ -229,4 +237,128 @@ main() {
 }
 
 ```
+# Layouts
 
+## Base Layout
+
+```bash
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        brightness: Brightness.light
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("My App title")
+        ),
+        body: Center(
+          child: Text("My app content",
+            style: TextStyle(
+              fontSize: 24
+            )
+          )
+        )
+      )
+    );
+  }
+}
+
+```
+
+## Containers
+
+```bash
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        brightness: Brightness.light
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("My App title")
+        ),
+        body: RowWidget()
+      )
+    );
+  }
+}
+
+class ColumnWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return
+      Column (
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [ 
+            Container(
+              color: Colors.blue,
+              child: Text("My app content",
+                style: TextStyle(
+                  fontSize: 24
+                )
+              ),
+              width: 250.0,
+              height: 100.0,
+              padding: EdgeInsets.all(10)
+            ),
+            Container( 
+              width: 100.0,
+              height: 100.0,
+              child: Image (image: NetworkImage('http://bit.ly/flutter_tiger'))
+            ),
+            Container( 
+              width: 100.0,
+              height: 100.0,
+              child: Image (image: AssetImage('assets/tiger.png'))
+            )
+          ]
+      );
+  }
+}
+
+class RowWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+              color: Colors.blue,
+              child: Text("My app content",
+                style: TextStyle(
+                  fontSize: 18
+                )
+              ),
+              width: 150.0,
+              height: 50.0,
+              margin: EdgeInsets.all(5.0),
+              padding: EdgeInsets.all(10)
+            ),
+        Container( 
+              width: 100.0,
+              height: 100.0,
+              child: Image (image: NetworkImage('http://bit.ly/flutter_tiger'))
+            ),
+            Container( 
+              width: 100.0,
+              height: 100.0,
+              child: Image (image: AssetImage('assets/tiger.png'))
+            )
+      ],
+    );
+  }
+}
+```

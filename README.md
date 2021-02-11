@@ -586,3 +586,66 @@ class _DropDownState extends State<DropdownInput> {
 }
 
 ```
+
+# Asynchronous operations
+
+## Futures
+
+```bash
+
+Future<String> getData() {
+  return Future.delayed(Duration(seconds: 8), () => "Delayed by 8 seconds");
+}
+
+var response = getData();
+response.then((s) {
+  //Do some stuff with the future string response
+});
+
+```
+
+## Futures nested
+
+```bash
+
+Future<String> getData() {
+  return Future.delayed(Duration(seconds: 8), () => "Delayed by 8 seconds");
+}
+
+Future<String> getData1() {
+  return Future.delayed(Duration(seconds: 10), () => "Delayed by 10 seconds");
+}
+
+var response = getData();
+response.then((s) {
+  //Do some stuff with the future string response
+  print(s);
+  var response1 = getData1();
+  response1.then((s1) {
+    print(s1);
+  });
+});
+
+```
+
+## Futures with async/await with error handling
+
+```bash
+
+Future<String> getData() async {
+  return Future.delayed(Duration(seconds: 8), () => "Delayed by 8 seconds");
+}
+
+Future<String> getData1() async {
+  return Future.delayed(Duration(seconds: 10), () => "Delayed by 10 seconds");
+}
+
+void main()
+{
+  try{
+    var response = await getData();
+    var response1 = await getData1();
+  } catch(e) {}
+}
+
+```

@@ -682,7 +682,7 @@ void main()
 ```
 ## Using http function
 
-Dependency on pubspec.yaml
+### Dependency on pubspec.yaml
 
 ```bash
 
@@ -690,7 +690,7 @@ dependencies:
   http: ^0.12.2
 
 ```
-Import the package
+### Import the package
 
 ```bash
 
@@ -698,7 +698,7 @@ import 'package:http/http.dart' as http;
 
 ```
 
-Using the http GET
+### Using the http GET
 
 ```bash
 
@@ -716,7 +716,7 @@ else {
 
 ```
 
-Using the HttpClient
+### Using the HttpClient
 
 ```bash
 
@@ -745,7 +745,7 @@ Future<List<ActivityModel>> getActivities() async {
   
 ```
 
-Using a FutureBuilder widget
+### Using a FutureBuilder widget
 
 ```bash
 
@@ -870,7 +870,7 @@ String getAccessToken() {
 
 https://pub.dev/packages/shared_preferences
 
-Adding the dependency
+### Adding the dependency
 
 ´´´bash
 
@@ -879,7 +879,7 @@ shared_preferences: "<newest version>"
 
 ´´´
 
-Saving data
+### Saving data
 
 ```bash
 
@@ -892,7 +892,7 @@ prefs.setInt('counter', counter);
 
 ```
 
-Getting data
+### Getting data
 
 ```bash
 
@@ -904,7 +904,7 @@ final counter = prefs.getInt('counter') ?? 0;
 
 ```
 
-Removing data
+### Removing data
 
 ```bash
 

@@ -587,6 +587,37 @@ class _DropDownState extends State<DropdownInput> {
 
 ```
 
+### ListView builder
+
+```bash
+
+Widget buildListView(BuildContext context, List<ActivityModel> elements) {
+    return ListView.builder(
+      itemCount: elements.length,
+      itemBuilder: (context, index) {
+        return Row(children: [
+          Container(
+              padding: EdgeInsets.all(10),
+              width: 60,
+              height: 60,
+              child: Image(image: NetworkImage("http://bit.ly/flutter_tiger"))),
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(elements[index].description),
+            Text(elements[index].description)
+          ])
+        ]);
+      },
+    );
+  }
+  
+class ActivityModel {
+  String imageUrl;
+  String description;
+  String dateTime;
+}
+
+```
+
 # Asynchronous operations
 
 ## Futures
@@ -682,5 +713,97 @@ else {
       content: Text("There was an error: Status code " +
           result.statusCode.toString())));
 }
+
+```
+
+Using the HttpClient
+
+```bash
+
+Future<List<ActivityModel>> getActivities() async {
+    HttpClient client = HttpClient();
+    var request =
+        await client.getUrl(Uri.parse("http://10.0.2.2:5000/activity"));
+
+    var response = await request.close();
+
+    if (response.statusCode == 200) {
+      //For later
+      //var responseDecoded = response.transform(utf8.decoder);
+    } else {
+      var activityList = new List<ActivityModel>();
+      var activity = new ActivityModel();
+      activity.description = "Empty list";
+      activity.dateTime = "Empty list";
+      activityList.add(activity);
+
+      return activityList;
+    }
+
+    return new List<ActivityModel>();
+  }
+  
+```
+
+Using a FutureBuilder widget
+
+```bash
+
+Container(
+  padding: EdgeInsets.all(10.0),
+  child: FutureBuilder<List<ActivityModel>>(
+      future: activityList,
+      builder: (context, snapshot) {
+        return buildListView(context, snapshot.data);
+      }
+  )
+);
+            
+```
+
+### Model to serialize/deserialize from json
+
+```bash
+
+class ActivityModel {
+  String imageUrl;
+  String description;
+  String dateTime;
+
+  ActivityModel({this.imageUrl, this.description, this.dateTime});
+
+  String toJson() {
+    var activityMap = {
+      "imageUrl": this.imageUrl,
+      "description": this.description,
+      "dateTime": this.dateTime
+    };
+
+    var json = jsonEncode(activityMap);
+
+    return json;
+  }
+
+  factory ActivityModel.fromJson(Map<String, dynamic> json) {
+    return ActivityModel(
+        imageUrl: json["imageUrl"],
+        description: json["description"],
+        dateTime: json["dateTime"]);
+  }
+}
+
+```
+
+## Basic token 
+
+```bash
+
+String getAccessToken() {
+    var credentials = "user:password";
+    var bytes = utf8.encode(credentials);
+    var token = base64.encode(bytes);
+
+    return token;
+  }
 
 ```

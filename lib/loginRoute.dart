@@ -9,14 +9,12 @@ class LoginRoute extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: Text("Profile")), body: LoginWidget());
   }
-
-  void changeRoute(BuildContext context) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => HomeRoute()));
-  }
 }
 
 class LoginWidget extends StatelessWidget {
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,18 +30,25 @@ class LoginWidget extends StatelessWidget {
                     height: 90,
                     child: Image(
                         image: NetworkImage("http://bit.ly/flutter_tiger")))),
-            InputTextWidget(TextInputType.emailAddress, "Email"),
-            InputTextWidget(TextInputType.visiblePassword, "Password"),
+            InputTextWidget(
+                TextInputType.emailAddress, "Email", usernameController),
+            InputTextWidget(
+                TextInputType.visiblePassword, "Password", passwordController),
             TextButton(
                 child: Text("Login"),
                 style: TextButton.styleFrom(
                     backgroundColor: Colors.blue, primary: Colors.white),
-                onPressed: () async {})
+                onPressed: () async {
+                  login(context);
+                })
           ],
         ));
   }
 
-  Future<String> getData() async {
-    return Future.delayed(Duration(seconds: 8), () => "Delayed by 8 seconds");
+  void login(BuildContext context) async {}
+
+  void changeRoute(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => HomeRoute()));
   }
 }

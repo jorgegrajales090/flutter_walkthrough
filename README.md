@@ -649,3 +649,36 @@ void main()
 }
 
 ```
+## Using http function
+
+Dependency on pubspec.yaml
+
+```bash
+
+dependencies:
+  http: ^0.12.2
+
+```
+Import the package
+
+```bash
+
+import 'package:http/http.dart' as http;
+
+```
+
+```bash
+
+var result = await http.get("http://10.0.2.2:5000/login?username=" +
+        usernameController.text +
+        "&password=" +
+        passwordController.text);
+    if (result.statusCode == 200)
+      changeRoute(context);
+    else {
+      Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text("There was an error: Status code " +
+              result.statusCode.toString())));
+    }
+
+```

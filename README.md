@@ -807,3 +807,110 @@ String getAccessToken() {
   }
 
 ```
+
+## HttpClient with authorization, FutureBuilder
+
+```bash
+
+  @override
+  void initState() {
+    super.initState();
+    activityList = getActivities();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        padding: EdgeInsets.all(10.0),
+        child: FutureBuilder<List<ActivityModel>>(
+            initialData: List<ActivityModel>(),
+            future: activityList,
+            builder: (context, snapshot) => snapshot.hasData
+                ? buildListView(context, snapshot.data)
+                : const SizedBox()));
+  }
+
+  Future<List<ActivityModel>> getActivities() async {
+    HttpClient client = HttpClient();
+    var request =
+        await client.getUrl(Uri.parse("http://10.0.2.2:5000/activity"));
+
+    request.headers
+        .add(HttpHeaders.authorizationHeader, "Basic " + this.getAccessToken());
+
+    var response = await request.close();
+
+    var activityList = new List<ActivityModel>();
+
+    if (response.statusCode == 200) {
+
+      var result = new StringBuffer();
+      await for (var contents in response.transform(Utf8Decoder())) {
+        result.write(contents);
+      }
+
+      var activities = jsonDecode(result.toString()) as List;
+
+      return activities
+          .map((activity) => ActivityModel.fromJson(activity))
+          .toList();
+          
+    } else {
+      var activity = new ActivityModel();
+      activity.description = "Empty list";
+      activity.dateTime = "Empty list";
+      activityList.add(activity);
+    }
+
+    return activityList;
+  }
+  
+```
+## Saving data on device
+
+https://pub.dev/packages/shared_preferences
+
+Adding the dependency
+
+´´´bash
+
+shared_preferences: "<newest version>"
+
+
+´´´
+
+Saving data
+
+```bash
+
+// obtain shared preferences
+final prefs = await SharedPreferences.getInstance();
+
+// set value
+prefs.setInt('counter', counter);
+
+
+```
+
+Getting data
+
+```bash
+
+final prefs = await SharedPreferences.getInstance();
+
+// Try reading data from the counter key. If it doesn't exist, return 0.
+final counter = prefs.getInt('counter') ?? 0;
+
+
+```
+
+Removing data
+
+```bash
+
+final prefs = await SharedPreferences.getInstance();
+
+prefs.remove('counter');
+
+
+```

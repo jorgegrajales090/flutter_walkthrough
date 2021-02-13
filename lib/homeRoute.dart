@@ -30,25 +30,41 @@ class HomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.all(10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
-            Container(
-                color: Colors.blue,
-                child: Text("Body", style: TextStyle(fontSize: 30)),
-                width: 100.0,
-                height: 50.0,
-                padding: EdgeInsets.all(5.0)),
-            Container(
-                color: Colors.red,
-                width: 100.0,
-                height: 100.0,
-                child:
-                    Image(image: NetworkImage("http://bit.ly/flutter_tiger"))),
-            Container(
-                width: 100.0,
-                height: 100.0,
-                child: Image(image: AssetImage("assets/images.png")))
+            Row(children: [
+              Container(
+                  padding: EdgeInsets.all(10),
+                  width: 60,
+                  height: 60,
+                  child: Image(
+                      image: NetworkImage("http://bit.ly/flutter_tiger"))),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [Text("Clase de inglés"), Text("8pm")])
+            ]),
+            Row(children: [
+              Container(
+                  padding: EdgeInsets.all(10),
+                  width: 60,
+                  height: 60,
+                  child: Image(
+                      image: NetworkImage("http://bit.ly/flutter_tiger"))),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [Text("Clase de flutter"), Text("8pm")])
+            ]),
+            Row(children: [
+              Container(
+                  padding: EdgeInsets.all(10),
+                  width: 60,
+                  height: 60,
+                  child: Image(
+                      image: NetworkImage("http://bit.ly/flutter_tiger"))),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [Text("Clase de angular"), Text("8pm")])
+            ])
           ],
         ));
   }

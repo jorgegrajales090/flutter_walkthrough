@@ -24,6 +24,7 @@ class _InputState extends State<InputTextWidget> {
     return Container(
         child: TextField(
       controller: this.controller,
+      obscureText: TextInputType.visiblePassword == this.type,
       keyboardType: this.type,
       decoration: InputDecoration(
           labelText: this.description, hintText: "Write a value"),

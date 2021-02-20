@@ -872,12 +872,11 @@ https://pub.dev/packages/shared_preferences
 
 ### Adding the dependency
 
-´´´bash
+```bash
 
 shared_preferences: "<newest version>"
 
-
-´´´
+```
 
 ### Saving data
 
@@ -914,3 +913,58 @@ prefs.remove('counter');
 
 
 ```
+## Pruebas unitarias
+
+### Dependencies
+
+```bash
+
+dev_dependencies:
+  test: ^1.15.7
+  mockito: ^4.1.4
+
+```
+
+### Creating a mock
+
+```bash
+
+```
+
+## Firebase
+
+Android build.gradle inside dependencies section
+
+```bash
+
+classpath "com.google.gms:google-services:4.3.5"
+
+//At the end
+apply plugin: "com.google.gms.google-services"
+
+```
+
+Dependency on pubspec.yaml
+
+```bash
+
+cloud_firestore: ^0.16.0+1
+
+```
+
+### Creating a streamBuilder
+
+```bash
+
+return Container(
+        padding: EdgeInsets.all(10.0),
+        child: StreamBuilder(
+            stream: FirebaseFirestore.instance.collection('activities').snapshots(),
+            builder: (context, snapshot) => snapshot.hasData
+                ? buildListView(context, snapshot.data.documents)
+                : const Text("Loading...")));
+                
+```
+
+
+

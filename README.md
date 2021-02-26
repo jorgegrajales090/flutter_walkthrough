@@ -26,6 +26,10 @@ Flutter Widget catalog
 
 https://flutter.dev/docs/development/ui/widgets
 
+Flutter debugging
+
+https://flutter.dev/docs/testing/debugging
+
 # Dart
 
 ## Main program

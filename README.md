@@ -30,6 +30,21 @@ Flutter debugging
 
 https://flutter.dev/docs/testing/debugging
 
+Dart packages
+
+https://pub.dev/
+
+Internationalize fluttter apps
+
+https://flutter.dev/docs/development/accessibility-and-localization/internationalization
+
+
+Add2App
+https://github.com/flutter/flutter/wiki/Add-Flutter-to-existing-apps
+
+Cupertino widgets
+https://flutter.dev/docs/development/ui/widgets/cupertino
+
 # Dart
 
 ## Main program
@@ -970,5 +985,13 @@ return Container(
                 
 ```
 
+### Which platform is running
 
+```bash
+
+  if(Platform.isAndroid)
+  
+  if(Platform.isIOS)
+
+```
 

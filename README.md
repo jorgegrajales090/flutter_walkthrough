@@ -45,6 +45,15 @@ https://github.com/flutter/flutter/wiki/Add-Flutter-to-existing-apps
 Cupertino widgets
 https://flutter.dev/docs/development/ui/widgets/cupertino
 
+Platform widgets (Writing some widgets to both platforms)
+https://pub.dev/packages/flutter_platform_widgets
+
+Publish android app
+https://flutter.dev/docs/deployment/android
+
+Publish IOS app
+https://flutter.dev/docs/deployment/ios
+
 # Dart
 
 ## Main program
